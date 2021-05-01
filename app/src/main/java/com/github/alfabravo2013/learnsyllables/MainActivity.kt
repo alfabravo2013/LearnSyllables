@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val consonantsAdapter = ConsonantsAdapter(this, DataStore.getConsonants())
+        val consonantsAdapter = ConsonantsAdapter(this, DataStore.getConsonants()) { update() }
         val syllablesAdapter = SyllablesAdapter(this, DataStore.getSyllablesByChar(DataStore.getDefaultChar()))
 
         rvSyllables = findViewById(R.id.rvSyllables)
@@ -26,11 +26,14 @@ class MainActivity : AppCompatActivity() {
         rvConsonants.adapter = consonantsAdapter
         rvSyllables.adapter = syllablesAdapter
 
-
     }
 
-    private fun updateSyllablesList(adapter: SyllablesAdapter, index: Int) {
-        val consonant = DataStore.getConsonantByIndex(index)
-        adapter.setData(DataStore.getSyllablesByChar(consonant))
+    private fun update() {
+        val cAdapter = rvConsonants.adapter as ConsonantsAdapter
+        val sAdapter = rvSyllables.adapter as SyllablesAdapter
+
+        val consonant = DataStore.getConsonantByIndex(cAdapter.position)
+        sAdapter.setData(DataStore.getSyllablesByChar(consonant))
     }
+
 }

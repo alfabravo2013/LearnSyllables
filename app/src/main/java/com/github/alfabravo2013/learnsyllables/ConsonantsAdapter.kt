@@ -6,8 +6,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ConsonantsAdapter(private val context: Context, private val consonants: List<Char>):
+class ConsonantsAdapter(
+    private val context: Context,
+    private val consonants: List<Char>,
+    private val callback: () -> Unit
+) :
     RecyclerView.Adapter<ConsonantsViewHolder>() {
+
+    private var currentPosition = 0
+    val position: Int
+        get() = currentPosition
+
+    init {
+        currentPosition = RecyclerView.NO_POSITION
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConsonantsViewHolder {
         val view = LayoutInflater.from(context)
@@ -18,6 +30,11 @@ class ConsonantsAdapter(private val context: Context, private val consonants: Li
     override fun onBindViewHolder(holder: ConsonantsViewHolder, position: Int) {
         val textView = holder.itemView.findViewById<TextView>(R.id.tvConsonant)
         textView.text = consonants[position].toUpperCase().toString()
+
+        holder.itemView.setOnClickListener {
+            currentPosition = position
+            callback()
+        }
     }
 
     override fun getItemCount(): Int = consonants.size
