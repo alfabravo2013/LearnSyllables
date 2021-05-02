@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_violet_font">#3700B3</color>
+    <color name="blue_font">#2528B5</color>
+    <color name="green_font">#00893C</color>
+    <color name="red_font">#C50027</color>
+    <color name="consonant_list_background">#CFD8DC</color>
+    <color name="syllables_list_background">#C5CAE9</color>
 </resources>
