@@ -7,14 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class SyllablesAdapter(private val context: Context, initialSyllables: List<Syllable>):
+class SyllablesAdapter(private val context: Context):
     RecyclerView.Adapter<SyllablesViewHolder>() {
 
     private val syllables: MutableList<Syllable> = mutableListOf()
-
-    init {
-        syllables.addAll(initialSyllables)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SyllablesViewHolder {
         val view = LayoutInflater.from(context)

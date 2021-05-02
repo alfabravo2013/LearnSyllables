@@ -8,18 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ConsonantsAdapter(
     private val context: Context,
-    private val consonants: List<Char>,
-    private val callback: () -> Unit
+    private val viewModel: SyllableViewModel
 ) :
     RecyclerView.Adapter<ConsonantsViewHolder>() {
 
-    private var currentPosition = 0
-    val position: Int
-        get() = currentPosition
-
-    init {
-        currentPosition = RecyclerView.NO_POSITION
-    }
+    private val consonants = DataStore.getConsonants()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConsonantsViewHolder {
         val view = LayoutInflater.from(context)
@@ -32,8 +25,7 @@ class ConsonantsAdapter(
         textView.text = consonants[position].toUpperCase().toString()
 
         holder.itemView.setOnClickListener {
-            currentPosition = position
-            callback()
+            viewModel.updateData(consonants[position])
         }
     }
 

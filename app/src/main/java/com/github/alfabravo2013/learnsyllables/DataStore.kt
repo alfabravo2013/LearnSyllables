@@ -40,4 +40,6 @@ object DataStore {
     fun getSyllablesByChar(char: Char): List<Syllable> = syllables[char] ?: emptyList()
 
     fun getConsonantByIndex(index: Int): Char = consonants[index]
+
+    fun getDefaultSyllables(): List<Syllable> = getSyllablesByChar(consonants.first())
 }

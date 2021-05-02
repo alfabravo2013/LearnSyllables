@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/tvConsonant"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:gravity="center"
-        android:textSize="92sp"
+        android:textSize="56sp"
         tools:text="Б"/>
 
 </FrameLayout>
