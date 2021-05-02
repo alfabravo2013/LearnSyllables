@@ -2,6 +2,7 @@ package com.github.alfabravo2013.learnsyllables
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -10,12 +11,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvSyllables: RecyclerView
     private lateinit var rvConsonants: RecyclerView
 
+    private val viewModel: SyllableViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val consonantsAdapter = ConsonantsAdapter(this, DataStore.getConsonants()) { update() }
-        val syllablesAdapter = SyllablesAdapter(this, DataStore.getSyllablesByChar(DataStore.getDefaultChar()))
+        val consonantsAdapter = ConsonantsAdapter(this, viewModel)
+        val syllablesAdapter = SyllablesAdapter(this)
 
         rvSyllables = findViewById(R.id.rvSyllables)
         rvConsonants = findViewById(R.id.rvConsonants)
@@ -26,14 +29,10 @@ class MainActivity : AppCompatActivity() {
         rvConsonants.adapter = consonantsAdapter
         rvSyllables.adapter = syllablesAdapter
 
-    }
+        viewModel.syllables.observe(this) {
+            syllablesAdapter.setData(it)
+        }
 
-    private fun update() {
-        val cAdapter = rvConsonants.adapter as ConsonantsAdapter
-        val sAdapter = rvSyllables.adapter as SyllablesAdapter
-
-        val consonant = DataStore.getConsonantByIndex(cAdapter.position)
-        sAdapter.setData(DataStore.getSyllablesByChar(consonant))
     }
 
 }
