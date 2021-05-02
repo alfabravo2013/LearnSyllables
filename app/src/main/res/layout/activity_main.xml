@@ -22,7 +22,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#656565"/>
+        android:background="@color/dark_violet_font"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSyllables"

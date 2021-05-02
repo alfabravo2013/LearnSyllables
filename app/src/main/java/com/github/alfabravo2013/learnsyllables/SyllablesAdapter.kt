@@ -7,8 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class SyllablesAdapter(private val context: Context):
-    RecyclerView.Adapter<SyllablesViewHolder>() {
+class SyllablesAdapter(
+    private val context: Context,
+    private val clickListener: (CharSequence) -> Unit
+) : RecyclerView.Adapter<SyllablesViewHolder>() {
 
     private val syllables: MutableList<Syllable> = mutableListOf()
 
@@ -25,6 +27,16 @@ class SyllablesAdapter(private val context: Context):
 
         hardSyllable.text = syllable.hardSyllable.toUpperCase(Locale("ru"))
         softSyllable.text = syllable.softSyllable.toUpperCase(Locale("ru"))
+
+        softSyllable.setOnLongClickListener {
+            clickListener(softSyllable.text)
+            true
+        }
+
+        hardSyllable.setOnLongClickListener {
+            clickListener(hardSyllable.text)
+            true
+        }
     }
 
     override fun getItemCount(): Int = syllables.size

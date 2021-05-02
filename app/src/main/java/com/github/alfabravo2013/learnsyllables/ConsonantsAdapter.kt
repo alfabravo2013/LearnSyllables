@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ConsonantsAdapter(
     private val context: Context,
     private val viewModel: SyllableViewModel
-) :
-    RecyclerView.Adapter<ConsonantsViewHolder>() {
+) : RecyclerView.Adapter<ConsonantsViewHolder>() {
 
     private val consonants = DataStore.getConsonants()
 
