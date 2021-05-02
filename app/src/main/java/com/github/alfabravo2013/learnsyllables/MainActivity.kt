@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         rvConsonants.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvSyllables.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+         LinearSnapHelper().attachToRecyclerView(rvConsonants) // centers viewholders but the most left one is half hidden
 
         rvConsonants.adapter = consonantsAdapter
         rvSyllables.adapter = syllablesAdapter

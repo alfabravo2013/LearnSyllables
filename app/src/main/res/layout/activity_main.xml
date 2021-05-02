@@ -6,24 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/consonant_list_background"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvConsonants"
-        android:layout_width="match_parent"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@android:color/holo_blue_bright"
+        android:layout_gravity="center_horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="12"
         tools:listitem="@layout/consonant_list_item" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#656565"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSyllables"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@android:color/holo_green_light"
+        android:background="@color/syllables_list_background"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="12"
         tools:listitem="@layout/syllables_list_item" />
