@@ -33,14 +33,14 @@
         android:id="@+id/rvSyllables"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:background="@color/syllables_list_background"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/separator"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator"
         tools:itemCount="12"
-        tools:listitem="@layout/syllables_list_item" />
+        tools:listitem="@layout/syllables_list_item_divided" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
