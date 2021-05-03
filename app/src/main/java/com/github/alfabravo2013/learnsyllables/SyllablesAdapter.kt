@@ -2,7 +2,9 @@ package com.github.alfabravo2013.learnsyllables
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -32,6 +34,11 @@ class SyllablesAdapter(
         softConsonant.text = syllable.softSyllable.first().toString()
         softVowel.text = syllable.softSyllable.last().toString()
 
+        animateView(hardConsonant)
+        animateView(hardVowel)
+        animateView(softConsonant)
+        animateView(softVowel)
+
         hardConsonant.setOnLongClickListener {
             clickListener(syllable.hardSyllable)
             true
@@ -59,5 +66,12 @@ class SyllablesAdapter(
         syllables.clear()
         syllables.addAll(newSyllables)
         notifyDataSetChanged()
+    }
+
+    private fun animateView(view: View) {
+        if (view.animation == null) {
+            val animation = AnimationUtils.loadAnimation(view.context, R.anim.scale_xy)
+            view.animation = animation
+        }
     }
 }
