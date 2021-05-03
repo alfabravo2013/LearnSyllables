@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun speakOut(text: CharSequence) {
-        tts.speak(text, TextToSpeech.QUEUE_ADD, null, "")
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
     override fun onDestroy() {

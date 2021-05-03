@@ -24,7 +24,8 @@ class ConsonantsAdapter(
         textView.text = consonants[position].toUpperCase().toString()
 
         holder.itemView.setOnClickListener {
-            viewModel.updateData(consonants[position])
+            viewModel.updateCurrentChar(consonants[position])
+            viewModel.updateData()
         }
     }
 

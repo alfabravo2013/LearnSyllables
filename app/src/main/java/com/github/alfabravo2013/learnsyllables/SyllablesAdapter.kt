@@ -2,10 +2,11 @@ package com.github.alfabravo2013.learnsyllables
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 class SyllablesAdapter(
     private val context: Context,
@@ -16,25 +17,45 @@ class SyllablesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SyllablesViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.syllables_list_item, parent, false)
+            .inflate(R.layout.syllables_list_item_divided, parent, false)
         return SyllablesViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SyllablesViewHolder, position: Int) {
-        val hardSyllable = holder.itemView.findViewById<TextView>(R.id.tvHardSyllable)
-        val softSyllable = holder.itemView.findViewById<TextView>(R.id.tvSoftSyllable)
+        val hardConsonant = holder.itemView.findViewById<TextView>(R.id.hardConsonant)
+        val hardVowel = holder.itemView.findViewById<TextView>(R.id.hardVowel)
+        val softConsonant = holder.itemView.findViewById<TextView>(R.id.softConsonant)
+        val softVowel = holder.itemView.findViewById<TextView>(R.id.softVowel)
+
         val syllable = syllables[position]
 
-        hardSyllable.text = syllable.hardSyllable.toUpperCase(Locale("ru"))
-        softSyllable.text = syllable.softSyllable.toUpperCase(Locale("ru"))
+        hardConsonant.text = syllable.hardSyllable.first().toString()
+        hardVowel.text = syllable.hardSyllable.last().toString()
+        softConsonant.text = syllable.softSyllable.first().toString()
+        softVowel.text = syllable.softSyllable.last().toString()
 
-        softSyllable.setOnLongClickListener {
-            clickListener(softSyllable.text)
+        animateView(hardConsonant)
+        animateView(hardVowel)
+        animateView(softConsonant)
+        animateView(softVowel)
+
+        hardConsonant.setOnLongClickListener {
+            clickListener(syllable.hardSyllable)
             true
         }
 
-        hardSyllable.setOnLongClickListener {
-            clickListener(hardSyllable.text)
+        hardVowel.setOnLongClickListener {
+            clickListener(syllable.hardSyllable)
+            true
+        }
+
+        softConsonant.setOnLongClickListener {
+            clickListener(syllable.softSyllable)
+            true
+        }
+
+        softVowel.setOnLongClickListener {
+            clickListener(syllable.softSyllable)
             true
         }
     }
@@ -45,5 +66,12 @@ class SyllablesAdapter(
         syllables.clear()
         syllables.addAll(newSyllables)
         notifyDataSetChanged()
+    }
+
+    private fun animateView(view: View) {
+        if (view.animation == null) {
+            val animation = AnimationUtils.loadAnimation(view.context, R.anim.scale_xy)
+            view.animation = animation
+        }
     }
 }

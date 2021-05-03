@@ -8,8 +8,8 @@
     <TextView
         android:id="@+id/tvConsonant"
         android:layout_width="50dp"
-        android:layout_marginStart="12.5dp"
-        android:layout_marginEnd="12.5dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_height="75dp"
         android:fontFamily="@font/marmelad"
         android:gravity="center"
